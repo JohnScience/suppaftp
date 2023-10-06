@@ -14,11 +14,15 @@ use std::time::Duration;
 
 use chrono::{NaiveDate, NaiveDateTime, NaiveTime};
 // export
+#[cfg(not(semver_exempt))]
+use tls::TlsStream;
+#[cfg(semver_exempt)]
+pub use tls::TlsStream;
+
 pub use data_stream::DataStream;
 pub use tls::NoTlsStream;
 #[cfg(feature = "secure")]
 pub use tls::TlsConnector;
-use tls::TlsStream;
 #[cfg(feature = "native-tls")]
 pub use tls::{NativeTlsConnector, NativeTlsStream};
 #[cfg(feature = "rustls")]

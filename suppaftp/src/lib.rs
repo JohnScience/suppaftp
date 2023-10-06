@@ -132,12 +132,19 @@ extern crate lazy_regex;
 extern crate log;
 
 // -- private
-#[cfg(feature = "async")]
+#[cfg(all(feature = "async", not(semver_exempt)))]
 mod async_ftp;
+#[cfg(all(feature = "async", semver_exempt))]
+pub mod async_ftp;
+
 pub(crate) mod command;
 mod regex;
 mod status;
+
+#[cfg(not(semver_exempt))]
 mod sync_ftp;
+#[cfg(semver_exempt)]
+pub mod sync_ftp;
 
 // -- public
 pub mod list;

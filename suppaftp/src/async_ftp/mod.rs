@@ -20,7 +20,12 @@ pub use data_stream::DataStream;
 pub use tls::AsyncNoTlsStream;
 #[cfg(feature = "async-secure")]
 pub use tls::AsyncTlsConnector;
+
+#[cfg(not(semver_exempt))]
 use tls::AsyncTlsStream;
+#[cfg(semver_exempt)]
+pub use tls::AsyncTlsStream;
+
 #[cfg(feature = "async-native-tls")]
 pub use tls::{AsyncNativeTlsConnector, AsyncNativeTlsStream};
 #[cfg(feature = "async-rustls")]
