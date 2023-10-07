@@ -130,6 +130,8 @@
 extern crate lazy_regex;
 #[macro_use]
 extern crate log;
+#[cfg(semver_exempt)]
+extern crate qualifier_attr;
 
 // -- private
 #[cfg(all(feature = "async", not(semver_exempt)))]
