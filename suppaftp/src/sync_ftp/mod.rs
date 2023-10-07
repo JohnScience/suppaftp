@@ -724,6 +724,7 @@ where
     }
 
     /// Retrieve single line response
+    #[cfg_attr(semver_exempt, qualifier_attr::qualifiers(pub))]
     fn read_response_in(&mut self, expected_code: &[Status]) -> FtpResult<Response> {
         let mut line = Vec::new();
         self.read_line(&mut line)?;
