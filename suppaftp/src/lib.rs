@@ -125,13 +125,17 @@
     html_logo_url = "https://raw.githubusercontent.com/veeso/suppaftp/main/assets/images/cargo/suppaftp-512.png"
 )]
 
+#[cfg(any(
+    all(semver_exempt, not(feature = "semver-exempt")),
+    all(not(semver_exempt), feature = "semver-exempt")
+))]
+compile_error!("Note that semver_exempt cfg and semver-exempt feature must be the same");
+
 // -- common deps
 #[macro_use]
 extern crate lazy_regex;
 #[macro_use]
 extern crate log;
-#[cfg(semver_exempt)]
-extern crate qualifier_attr;
 
 // -- private
 #[cfg(all(feature = "async", not(semver_exempt)))]

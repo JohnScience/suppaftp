@@ -71,6 +71,7 @@ async-native-tls-vendored = [
 ]
 rustls = ["rustls-crate", "secure"]
 secure = []
+semver-exempt = ["qualifier_attr"]
 
 # Disable logging
 no-log = ["log/max_level_off"]
